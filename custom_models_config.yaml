@@ -1,0 +1,95 @@
+# ===================================================================
+# 自定义模型配置文件 - 支持 Kimi-K2, DeepSeek-R1, Qwen3
+# ===================================================================
+
+# 1. Kimi-K2 模型配置 (Moonshot AI)
+# 使用方式: 在代码中通过 provider: kimi_k2 引用
+kimi_k2:
+  provider: autogen_ext.models.openai.OpenAIChatCompletionClient
+  config:
+    model: kimi-k2-0711-preview
+    api_key: sk-5WRXcCdiP1HoPDRwpcKnF0Zi5b9th6q12mF50KqBDJrUc62y
+    base_url: https://api.moonshot.cn/v1
+    temperature: 0.6
+    max_tokens: 8192
+    model_info:
+      # Kimi-K2 具有强大的编程能力
+      function_calling: true
+      json_output: true
+      vision: false
+      family: kimi
+    model_capabilities:
+      function_calling: true
+      json_output: true
+      vision: false
+
+# 2. DeepSeek-R1 模型配置 (DeepSeek AI)  
+# 使用方式: 在代码中通过 provider: deepseek_r1 引用
+deepseek_r1:
+  provider: autogen_ext.models.openai.OpenAIChatCompletionClient
+  config:
+    model: deepseek-reasoner
+    api_key: sk-17269fe512b74407b22f5c926a216bf1
+    base_url: https://api.deepseek.com
+    temperature: 0.3
+    max_tokens: 8192
+    model_info:
+      # DeepSeek-R1 专门针对推理任务优化
+      function_calling: true
+      json_output: true
+      vision: false
+      family: deepseek-r1
+    model_capabilities:
+      function_calling: true
+      json_output: true
+      vision: false
+
+# 3. Qwen3 模型配置 (阿里云通义千问)
+# 使用方式: 在代码中通过 provider: qwen3_coder 引用  
+qwen3_coder:
+  provider: autogen_ext.models.openai.OpenAIChatCompletionClient
+  config:
+    model: qwen3-coder-plus
+    api_key: sk-829bda5565e04302b9bd5a088f0247c3
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    temperature: 0.1
+    max_tokens: 8192
+    model_info:
+      # Qwen3-Coder 专门针对编程任务优化
+      function_calling: true
+      json_output: true
+      vision: false
+      family: qwen3
+    model_capabilities:
+      function_calling: true
+      json_output: true
+      vision: false
+
+# ===================================================================
+# 环境变量配置 (可选，推荐使用环境变量而不是明文API密钥)
+# ===================================================================
+
+# 如果您希望使用环境变量，可以这样配置:
+# kimi_k2_env:
+#   provider: autogen_ext.models.openai.OpenAIChatCompletionClient
+#   config:
+#     model: kimi-k2-0711-preview
+#     api_key: ${MOONSHOT_API_KEY}
+#     base_url: https://api.moonshot.cn/v1
+#     temperature: 0.6
+
+# deepseek_r1_env:
+#   provider: autogen_ext.models.openai.OpenAIChatCompletionClient
+#   config:
+#     model: deepseek-reasoner
+#     api_key: ${DEEPSEEK_API_KEY}
+#     base_url: https://api.deepseek.com
+#     temperature: 0.3
+
+# qwen3_coder_env:
+#   provider: autogen_ext.models.openai.OpenAIChatCompletionClient
+#   config:
+#     model: qwen3-coder-plus
+#     api_key: ${DASHSCOPE_API_KEY}
+#     base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+#     temperature: 0.1
